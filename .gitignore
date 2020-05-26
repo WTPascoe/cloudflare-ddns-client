@@ -2,3 +2,4 @@ pyvenv/
 .idea
 devcontainer.json
 *.pyc
+.devcontainer/.env
