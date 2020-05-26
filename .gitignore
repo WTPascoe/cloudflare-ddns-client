@@ -1,6 +1,5 @@
 pyvenv/
 .idea
-devcontainer.json
 *.pyc
 .devcontainer/.env
 .devcontainer/cloudflare-ddns
