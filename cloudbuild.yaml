@@ -1,0 +1,15 @@
+steps:
+- name: gcr.io/cloud-builders/gcloud
+  entrypoint: 'bash'
+  args: [ '-c', 'gcloud secrets versions access latest --secret=$_DOCKER_TOKEN > docker_token.txt' ]
+- name: 'gcr.io/cloud-builders/docker'
+  entrypoint: 'bash'
+  args: ['-c', 'docker login --username=$_DOCKER_ACCOUNT --password-stdin < docker_token.txt']
+- name: "gcr.io/cloud-builders/docker"
+  args: ["build", "-t", "$_DOCKER_ACCOUNT/$PROJECT_ID:$TAG_NAME", "-t", "$_DOCKER_ACCOUNT/$PROJECT_ID:latest", "."]
+- name: 'gcr.io/cloud-builders/docker'
+  args:
+    - '-c'
+    - |
+      docker push $_DOCKER_ACCOUNT/$PROJECT_ID:$TAG_NAME
+      docker push $_DOCKER_ACCOUNT/$PROJECT_ID:latest
