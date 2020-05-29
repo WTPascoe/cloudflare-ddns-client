@@ -18,7 +18,7 @@ steps:
   args:
     - '-c'
     - |
-      docker build -t $_DOCKER_ACCOUNT/$PROJECT_ID:$TAG_NAME -t $_DOCKER_ACCOUNT/$PROJECT_ID:latest . -t $_DOCKER_ACCOUNT/$PROJECT_ID:$(cat major).$(cat minor) -t $_DOCKER_ACCOUNT/$PROJECT_ID:$(cat major).
+      docker build -t $_DOCKER_ACCOUNT/$PROJECT_ID:$TAG_NAME -t $_DOCKER_ACCOUNT/$PROJECT_ID:latest -t $_DOCKER_ACCOUNT/$PROJECT_ID:$(cat major).$(cat minor) -t $_DOCKER_ACCOUNT/$PROJECT_ID:$(cat major) .
       docker push $_DOCKER_ACCOUNT/$PROJECT_ID:$TAG_NAME
       docker push $_DOCKER_ACCOUNT/$PROJECT_ID:$(cat major)
       docker push $_DOCKER_ACCOUNT/$PROJECT_ID:$(cat major).$(cat minor)
